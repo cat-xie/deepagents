@@ -1,0 +1,60 @@
+# ========== 密钥与敏感配置 ==========
+.env
+.env.local
+*.pem
+*.key
+
+# ========== Python ==========
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+.python-version
+
+# ========== 数据库（含对话历史和记忆，可能含敏感数据）==========
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# ========== Agent 产出物与记忆 ==========
+output/
+memories/
+checkpoints.db
+memories.db
+
+# ========== Docker 沙箱数据 ==========
+docker_sandbox_data/
+deepagents-sandbox-*
+
+# ========== IDE / 编辑器 ==========
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ========== 操作系统 ==========
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========== 日志与临时文件 ==========
+*.log
+logs/
+tmp/
+*.tmp
+
+# ========== Jupyter ==========
+.ipynb_checkpoints/
+
+# ========== 虚拟环境 ==========
+venv/
+env/
+.venv/

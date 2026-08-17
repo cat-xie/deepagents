@@ -1,0 +1,24 @@
+# ========== 核心依赖 ==========
+python-dotenv              # .env 加载
+langchain-openai          # ChatOpenAI（DashScope 兼容模式）
+langchain                 # LangChain 核心
+langgraph                 # LangGraph（agent 状态图）
+langgraph-checkpoint-sqlite  # SQLite checkpointer（持久化对话历史）
+deepagents                # deepagents 框架
+pydantic                  # 数据模型
+tavily-python             # Tavily 搜索 API
+
+# ========== 沙箱模式（可选）==========
+docker                    # Docker SDK（沙箱模式需要）
+
+# ========== 免费搜索替代（可选）==========
+duckducko-search          # DuckDuckGo 免费搜索
+
+# ========== 本地模型（可选）==========
+langchain-ollama          # Ollama 本地模型接入
+
+# ========== Web 服务（可选，未来扩展）==========
+fastapi
+uvicorn[standard]
+websockets
+pyyaml
