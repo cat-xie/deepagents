@@ -144,11 +144,10 @@ cp .env.example .env
 3. 拉取基础镜像：`docker pull python:3.11-slim-bookworm`
 4. 在 `.env` 里设 `USE_DOCKER_SANDBOX=true`
 
-### 4. 运行
+### 4. 运行效果
 
-```bash
-python agent.py
-```
+<img width="1876" height="931" alt="image" src="https://github.com/user-attachments/assets/6c0dc517-abaa-441a-83fd-88ff9aca2f5b" />
+
 
 ### 5. 测试话术
 
