@@ -81,21 +81,31 @@
 ```
 my-deep-agent/
 ├── agent.py                      # 主 Agent 入口
+├── api/
+│   ├── __init__.py
+│   └── server.py                 # FastAPI 后端服务（REST + WebSocket）
+├── frontend/                     # React + TypeScript + Vite 前端
+│   ├── src/
+│   ├── index.html
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
 ├── subagents/
 │   ├── researcher_agent.py       # 研究员子 Agent
-│   └── writer_agent.py          # 作家子 Agent
+│   └── writer_agent.py           # 作家子 Agent
 ├── skills/
 │   ├── researcher_skill.py       # 研究员工具（Tavily 搜索 + Store 记忆）
-│   └── writer_skill.py          # 作家工具（撰写 + Store 记忆）
+│   └── writer_skill.py           # 作家工具（撰写 + Store 记忆）
 ├── stores/
 │   ├── sqlite_store.py           # 自实现 BaseStore（SQLite + FTS5 全文检索）
-│   └── store_singleton.py       # Store 全局单例
+│   └── store_singleton.py        # Store 全局单例
 ├── backends/
 │   ├── __init__.py
-│   └── docker_sandbox.py        # Docker 沙箱后端
+│   └── docker_sandbox.py         # Docker 沙箱后端
 ├── .env.example                  # 环境变量示例
 ├── .gitignore
 ├── AGENTS.md                     # Agent 协作规范
+├── requirements.txt              # Python 依赖
 └── README.md
 ```
 
@@ -183,12 +193,62 @@ pydantic
 7. **持久化记忆**：SqliteSaver + 自实现 BaseStore，对话和记忆不丢
 8. **模型无关性**：同一套代码，云端 qwen 和本地 Ollama 都能跑
 
+## Web 前端
+
+项目包含 React + TypeScript + Vite 构建的前端界面，支持对话交互、实时流式输出、审批弹窗等。
+
+### 前端技术栈
+
+| 模块 | 技术 |
+|------|------|
+| 框架 | React 19 |
+| 构建工具 | Vite 6 |
+| Markdown 渲染 | react-markdown |
+| 通信 | WebSocket + REST |
+
+### 启动方式
+
+**终端 1 — 后端**（确保 Docker Desktop 在运行）：
+
+```bash
+cd c:\Users\xieheng\Documents\trae_projects\deepagent_1\my-deep-agent
+conda activate deep-agent-env
+python -m uvicorn api.server:app --reload --port 8000
+```
+
+**终端 2 — 前端**：
+
+```bash
+cd c:\Users\xieheng\Documents\trae_projects\deepagent_1\my-deep-agent\frontend
+npm run dev
+```
+
+前端默认在 `http://localhost:5173`，后端 API 在 `http://localhost:8000`。
+
+### 前端目录结构
+
+```
+frontend/
+├── src/                # React 源码
+├── index.html          # 入口 HTML
+├── package.json        # 依赖配置
+├── tsconfig.json       # TypeScript 配置
+└── vite.config.ts      # Vite 配置
+```
+
+### 后端目录结构
+
+```
+api/
+├── __init__.py
+└── server.py           # FastAPI 服务（REST + WebSocket）
+```
+
 ## 局限性
 
 - 当前用 SQLite 单机存储，生产环境建议换 Postgres
 - qwen3.8-max 对 `response_format` 支持不完整，已移除结构化输出
 - 沙箱模式下 permissions 不可用（deepagents 已知限制）
-- 无 Web 前端，当前为终端交互
 
 ## License
 
