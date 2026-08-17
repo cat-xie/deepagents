@@ -250,6 +250,9 @@ api/
 - qwen3.8-max 对 `response_format` 支持不完整，已移除结构化输出
 - 沙箱模式下 permissions 不可用（deepagents 已知限制）
 
+## 注意
+- 使用的模型需要有工具调用能力，否则无法达到预期效果
+
 ## License
 
 MIT
